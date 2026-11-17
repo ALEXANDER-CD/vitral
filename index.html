@@ -42,7 +42,7 @@ h1 em{color:var(--terra)}
 .frame{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin:auto;border-radius:50%;padding:14px;background:conic-gradient(var(--gold),var(--terra),var(--cobalt),var(--ochre),var(--gold));box-shadow:0 30px 80px rgba(200,90,50,.25)}
 .frame::after{content:"";position:absolute;inset:6px;border-radius:50%;border:3px solid var(--lead)}
 .frame .disc{width:100%;height:100%;border-radius:50%;overflow:hidden;border:6px solid var(--lead);background:#000}
-.frame img{width:190%;max-width:none;margin:-45% 0 0 -45%;display:block;animation:breathe 14s ease-in-out infinite alternate}
+.frame img{width:150%;max-width:none;margin:-3% 0 0 -25%;display:block;animation:breathe 14s ease-in-out infinite alternate}
 @keyframes breathe{to{transform:scale(1.06) rotate(2deg)}}
 /* explorer */
 #explorer{background:var(--cream)}
@@ -105,23 +105,36 @@ h1 em{color:var(--terra)}
 const lb=$("#lb");$("#mkbtn").onclick=()=>{$("#lbi").src=$("#mk").src;lb.classList.add("on")};$("#mk").onclick=$("#mkbtn").onclick;
 $("#lbx").onclick=()=>lb.classList.remove("on");addEventListener("keydown",e=>{if(e.key=="Escape")lb.classList.remove("on")});
 /* palette */
-.pal{display:grid;gap:2rem;margin-top:2.5rem}
-@media(min-width:900px){.pal{grid-template-columns:.8fr 1.2fr;align-items:center}}
+.pal{display:grid;gap:2.5rem;margin-top:2.5rem}
+@media(min-width:900px){.pal{grid-template-columns:1fr 1fr;align-items:start}}
 .sw{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.sw button{position:relative;height:130px;border:3px solid var(--lead);border-radius:4px 40px 4px 40px;cursor:pointer;color:#fff;font:600 .9rem 'Plus Jakarta Sans';text-align:left;padding:1rem;transition:transform .3s,box-shadow .3s;overflow:hidden;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.sw button:hover,.sw button.on{transform:translateY(-4px) rotate(-1deg);box-shadow:0 14px 30px rgba(43,38,35,.3)}
+.sw button{position:relative;height:92px;border:2px solid var(--lead);border-radius:6px;cursor:pointer;color:#fff;font:600 .9rem 'Plus Jakarta Sans';text-align:left;padding:1rem;transition:transform .3s,box-shadow .3s;overflow:hidden;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.sw button:hover{transform:translateY(-2px)}.sw button.on{transform:translateY(-2px);box-shadow:0 0 0 3px var(--alab),0 0 0 5px var(--gold)}
 .sw button small{display:block;font-weight:400;opacity:.9}
-.prev{position:relative;border:6px solid var(--lead);overflow:hidden;background:#000}
-.prev img{display:block;width:100%;transition:filter 1s}
+.prev{position:relative;border:5px solid var(--lead);overflow:hidden;background:#000;aspect-ratio:16/10;max-height:340px;width:100%}
+.prev img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transition:filter 1s}
 .prev .tint{position:absolute;inset:0;mix-blend-mode:soft-light;transition:background 1s;pointer-events:none}
 .prev .tint2{position:absolute;inset:0;mix-blend-mode:multiply;transition:background 1s;pointer-events:none}
-.times{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.times{display:flex;gap:.5rem;margin-top:1.4rem;flex-wrap:wrap;position:relative;z-index:1}
 .mk{padding:1.2rem;margin-top:1.5rem;display:grid;gap:.9rem;text-align:center}
 .mk img{width:100%;display:block;border:4px solid var(--ochre);border-radius:4px;cursor:zoom-in}
 #lb{position:fixed;inset:0;z-index:100;background:#FFFDF9;display:none;place-items:center;padding:1rem}
 #lb.on{display:grid}
 #lb img{max-width:100%;max-height:calc(100svh - 5rem);display:block}
 #lb button{position:absolute;top:calc(env(safe-area-inset-top,0px) + .8rem);right:.8rem}
+.pal>div:last-child{order:-1;justify-self:center;width:100%;max-width:380px;text-align:center}
+.prev{border-radius:50%;aspect-ratio:1;max-height:none;width:100%;margin:0 auto;border:6px solid var(--lead);box-shadow:0 0 0 6px var(--gold),0 24px 60px rgba(43,38,35,.25)}
+.prev img{width:150%;max-width:none;height:auto;object-fit:fill;margin:-3% 0 0 -25%}
+.times{justify-content:center;margin-top:1.8rem}
+#pnote{margin:1rem auto 0;text-align:center;font-size:.95rem}
+.sw{gap:.8rem}.sw button{height:84px}
+@media(min-width:900px){.pal{grid-template-columns:minmax(280px,380px) 1fr;align-items:center;gap:4rem}}
+#paleta .pal{display:flex!important;flex-direction:column;align-items:center;gap:3.5rem;margin-top:3rem}
+#paleta .pal>div:last-child{order:1;flex:none;width:min(100%,340px);max-width:340px}
+#paleta .sw{order:2;width:100%;max-width:680px;grid-template-columns:repeat(2,1fr)}
+#paleta .prev{width:min(100%,340px)!important;height:auto;margin:10px auto 0;overflow:hidden}
+#paleta .times{margin-top:2rem}
+@media(min-width:900px){#paleta .pal{flex-direction:row!important;align-items:center;justify-content:center;gap:5rem}#paleta .pal>div:last-child{order:1;flex:0 0 340px}#paleta .sw{order:2;flex:1;max-width:560px}}
 footer{padding:3rem 1.5rem;text-align:center;background:var(--lead);color:#d9cfbf;font-size:.9rem}
 footer p{margin:auto}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
@@ -294,12 +307,12 @@ const G=[{n:"Ámbar solar",s:"Luz cálida y filtrada",c:"#D99B26",d:"El ámbar d
 {n:"Rojo rubí",s:"Alas y túnicas",c:"#B3261E",d:"El rubí viste a los ángeles y al Niño. Con poca luz se vuelve casi granate."},
 {n:"Azul mariano",s:"Manto de la Virgen",c:"#1E3A5F",d:"El azul cobalto concentra la mirada en el centro y contrasta con los cálidos que lo rodean."},
 {n:"Ocre dorado",s:"Halos y estrellas",c:"#E6B85C",d:"Los halos, las filacterias y los bordes dorados dibujan la jerarquía sagrada."}];
-const T={"Amanecer":{a:"rgba(255,170,150,.35)",b:"rgba(255,225,200,.18)",f:"saturate(1.05) brightness(1.02)"},"Mediodía":{a:"rgba(255,255,255,.0)",b:"rgba(255,255,255,0)",f:"saturate(1.2) brightness(1.1) contrast(1.05)"},"Atardecer":{a:"rgba(230,100,40,.5)",b:"rgba(120,40,40,.22)",f:"saturate(1.15) brightness(.92) sepia(.18)"}};
+const T={"Amanecer":{a:"rgba(255,190,170,.28)",b:"rgba(255,225,200,.12)",f:"brightness(1.03) saturate(.95)"},"Mediodía":{a:"rgba(255,255,255,0)",b:"rgba(255,255,255,0)",f:"none"},"Atardecer":{a:"rgba(230,120,60,.32)",b:"rgba(120,40,40,.14)",f:"brightness(.94) sepia(.12)"}};
 let gi=0,ti="Mediodía";
 $("#sw").innerHTML=G.map((g,i)=>`<button data-i="${i}" style="background:linear-gradient(135deg,${g.c},${g.c}cc 55%,#2B2623 160%)">${g.n}<small>${g.s}</small></button>`).join("");
 $("#times").innerHTML=Object.keys(T).map(k=>`<button class="tab" data-t="${k}">${k}</button>`).join("");
 function pal(){$$("#sw button").forEach((b,i)=>b.classList.toggle("on",i==gi));$$("#times .tab").forEach(b=>b.classList.toggle("on",b.dataset.t==ti));const t=T[ti],g=G[gi];
-$("#t1").style.background=`radial-gradient(circle at 50% 45%,${g.c}99,transparent 70%)`;$("#t2").style.background=`linear-gradient(180deg,${t.a},${t.b})`;$("#pimg").style.filter=t.f;
+$("#t1").style.background=`radial-gradient(circle at 50% 45%,${g.c}38,transparent 75%)`;$("#t2").style.background=`linear-gradient(180deg,${t.a},${t.b})`;$("#pimg").style.filter=t.f;
 $("#pnote").innerHTML=`<b>${g.n}.</b> ${g.d}`}
 $$("#sw button").forEach(b=>b.onclick=()=>{gi=+b.dataset.i;pal()});$$("#times .tab").forEach(b=>b.onclick=()=>{ti=b.dataset.t;pal()});pal();
 </script>
